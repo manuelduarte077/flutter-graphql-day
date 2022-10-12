@@ -36,7 +36,7 @@ class AddNewTaskScreen extends StatelessWidget {
             SizedBox(height: 10),
             TextField(
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 18,
               ),
               keyboardType: TextInputType.multiline,
               maxLines: 5,

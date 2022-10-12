@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 class TasksCardScreen extends StatelessWidget {
   const TasksCardScreen({super.key});
@@ -125,7 +126,12 @@ class WidgetNotes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final handleDetailTask = useCallback(() {
+      Navigator.pushNamed(context, '/task-detail');
+    }, []);
+
     return ListTile(
+      onTap: handleDetailTask,
       title: Text(
         title,
         style: const TextStyle(

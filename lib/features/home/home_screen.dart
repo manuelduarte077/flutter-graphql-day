@@ -7,12 +7,9 @@ class HomeScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final handleAddUser = useCallback(
-      () {
-        Navigator.pushNamed(context, '/add-user');
-      },
-      [],
-    );
+    final handleAddTask = useCallback(() {
+      Navigator.pushNamed(context, '/add-user');
+    }, []);
 
     return Scaffold(
       appBar: AppBar(
@@ -39,7 +36,7 @@ class HomeScreen extends HookWidget {
         shape: const CircleBorder(),
         backgroundColor: const Color(0xff7885FF),
         elevation: 0,
-        onPressed: handleAddUser,
+        onPressed: handleAddTask,
         child: const Icon(Icons.add, size: 24, color: Colors.white),
       ),
     );

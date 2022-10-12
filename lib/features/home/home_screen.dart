@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/features/task/tasks_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,9 +10,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Material App Bar'),
       ),
-      body: const Center(
-        child: Text('Hello World'),
-      ),
+      body: const TasksScreen(),
     );
   }
 }

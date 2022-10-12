@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/features/home/home_screen.dart';
+import 'package:flutter_todo/features/task/add_new_task_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -14,6 +15,15 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: const HomeScreen(),
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/add-user':
+            return MaterialPageRoute(builder: (_) => const AddNewTaskScreen());
+          case '/':
+          default:
+            return MaterialPageRoute(builder: (_) => const HomeScreen());
+        }
+      },
     );
   }
 }

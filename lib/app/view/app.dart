@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(builder: (_) => const AddNewTaskScreen());
           case '/task-detail':
             return MaterialPageRoute(
-              builder: (_) => TaskDetailScreen(),
+              builder: (_) => const TaskDetailScreen(),
             );
           case '/':
           default:

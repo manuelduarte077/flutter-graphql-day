@@ -1,0 +1,14 @@
+targets:
+  $default:
+    builders:
+      graphql_codegen:
+        options:
+          # graphql_codegen will generate classes following each of the
+          # libraries conventions listed here, graphql comes with Options
+          # classes and graphql_flutter brings all the operations
+          clients:
+            - graphql
+            - graphql_flutter
+          # Where to put the generated types, in this case a folder in the
+          # relative directory of the graphql files called __generated__
+          outputDirectory: __generated__

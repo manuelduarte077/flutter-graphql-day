@@ -1,0 +1,9 @@
+query TodosQuery {
+  todos {
+    id
+    ...todoCardBody_Todo
+    user {
+      ...todoUser_User
+    }
+  }
+}

@@ -114,7 +114,7 @@ class TasksCardScreen extends StatelessWidget {
   }
 }
 
-class WidgetNotes extends StatelessWidget {
+class WidgetNotes extends HookWidget {
   const WidgetNotes({
     super.key,
     required this.title,

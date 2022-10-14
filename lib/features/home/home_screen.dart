@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_todo/features/task/tasks_card_screen.dart';
+import 'package:flutter_todo/features/task/task_list/tasks_card_screen.dart';
 
 class HomeScreen extends HookWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final handleAddTask = useCallback(() {
-      Navigator.pushNamed(context, '/add-user');
-    }, []);
+    final handleAddTask = useCallback(
+      () {
+        Navigator.pushNamed(context, '/add-user');
+      },
+      [],
+    );
 
     return Scaffold(
       appBar: AppBar(

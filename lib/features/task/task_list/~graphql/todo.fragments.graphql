@@ -1,0 +1,13 @@
+
+# Should be type `Todo` but they made the schema weird
+fragment todoCardBody_Todo on Todo {
+    id
+    title
+    description
+    completed
+}
+
+fragment todoUser_User on User{
+  id
+  name
+}

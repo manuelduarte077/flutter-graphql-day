@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/features/home/home_screen.dart';
-import 'package:flutter_todo/features/task/add_new_task_screen.dart';
-import 'package:flutter_todo/features/task/task_detail_screen.dart';
+
+import 'package:flutter_todo/features/task/task_detail/task_detail_screen.dart';
+import 'package:flutter_todo/features/task/task_new/add_new_task_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

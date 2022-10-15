@@ -1,5 +1,5 @@
 {
-    "name": "ToDO GraphQL Schema",
+    "name": "Task GraphQL Schema",
     "schemaPath": "lib/graphql/schema.graphql",
     "extensions": {
         "endpoints": {

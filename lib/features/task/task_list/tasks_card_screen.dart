@@ -1,115 +1,68 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_todo/features/task/task_list/~graphql/__generated__/todo_tab.query.graphql.dart';
+import 'package:flutter_todo/utils/utils.dart';
 
 class TasksCardScreen extends StatelessWidget {
   const TasksCardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            const WidgetNotes(
-              title: '✍️ Youtube script ideas',
-              description:
-                  'There are many apps in Android that can run or emulate other operating systems, via utilizing hardware support for platform... ',
-            ),
+    /// Listar estos
+    return Query$TodosQuery$Widget(
+      builder: (result, {fetchMore, refetch}) {
+        /// investigar
+        final noDataWidget = validateResult(result);
 
-            /// Separator
-            SizedBox(
-              height: 0.5,
-              child: Container(
-                color: const Color(0xFFBDBDBD),
+        if (noDataWidget != null) return noDataWidget;
+
+        final data = result.parsedData!;
+
+        /// si no hay datos en la lista de tareas se muestra un mensaje de que no hay tareas
+
+        if (data.todos.isEmpty) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/no_data.png',
+                width: 237,
+                height: 186,
               ),
-            ),
-
-            const WidgetNotes(
-              title: '📚 Read a book',
-              description:
-                  'There are many apps in Android that can run or emulate other operating systems, via utilizing hardware support for platform... ',
-            ),
-
-            /// Separator
-            SizedBox(
-              height: 0.5,
-              child: Container(
-                color: const Color(0xFFBDBDBD),
+              const SizedBox(height: 20),
+              const ListTile(
+                title: Text(
+                  'No hay tareas',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                subtitle: Text(
+                  'Puedes crear una nueva tarea presionando el botón +',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ),
-            ),
+            ],
+          );
+        }
 
-            const WidgetNotes(
-              title: '📝 Write a blog post',
-              description:
-                  'There are many apps in Android that can run or emulate other operating systems, via utilizing hardware support for platform... ',
-            ),
-
-            /// Separator
-            SizedBox(
-              height: 0.5,
-              child: Container(
-                color: const Color(0xFFBDBDBD),
-              ),
-            ),
-
-            const WidgetNotes(
-              title: '📘 Datastore Blog',
-              description:
-                  'There are many apps in Android that can run or emulate other operating systems, via utilizing hardware support for platform... ',
-            ),
-
-            /// Separator
-            SizedBox(
-              height: 0.5,
-              child: Container(
-                color: const Color(0xFFBDBDBD),
-              ),
-            ),
-
-            const WidgetNotes(
-              title: '🎭 College Skit review',
-              description:
-                  'There are many apps in Android that can run or emulate other operating systems, via utilizing hardware support for platform... ',
-            ),
-
-            /// Separator
-            SizedBox(
-              height: 0.5,
-              child: Container(
-                color: const Color(0xFFBDBDBD),
-              ),
-            ),
-
-            const WidgetNotes(
-              title: '📌 Points to remember',
-              description:
-                  'There are many apps in Android that can run or emulate other operating systems, via utilizing hardware support for platform... ',
-            ),
-
-            /// Separator
-            SizedBox(
-              height: 0.5,
-              child: Container(
-                color: const Color(0xFFBDBDBD),
-              ),
-            ),
-
-            const WidgetNotes(
-              title: 'College skit review 🏄😝',
-              description:
-                  'There are many apps in Android that can run or emulate other operating systems, via utilizing hardware support for platform... ',
-            ),
-
-            SizedBox(
-              height: 0.5,
-              child: Container(
-                color: const Color(0xFFBDBDBD),
-              ),
-            ),
-          ],
-        ),
-      ),
+        return ListView.builder(
+          itemCount: data.todos.length,
+          itemBuilder: (context, index) {
+            final todo = data.todos[index];
+            return WidgetNotes(
+              title: todo.title,
+              description: todo.description,
+            );
+          },
+        );
+      },
     );
   }
 }
@@ -126,16 +79,19 @@ class WidgetNotes extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final handleDetailTask = useCallback(() {
-      Navigator.pushNamed(context, '/task-detail');
-    }, []);
+    final handleDetailTask = useCallback(
+      () {
+        Navigator.pushNamed(context, '/task-detail');
+      },
+      [],
+    );
 
     return ListTile(
       onTap: handleDetailTask,
       title: Text(
         title,
         style: const TextStyle(
-          fontSize: 24,
+          fontSize: 18,
           fontWeight: FontWeight.w600,
         ),
       ),

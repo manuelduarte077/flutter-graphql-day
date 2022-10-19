@@ -90,25 +90,39 @@ class WidgetNotes extends HookWidget {
       [],
     );
 
-    return ListTile(
-      onTap: handleDetailTask,
-      title: Text(
-        title,
-        style: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      subtitle: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Text(
-          description,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: ListTile(
+        shape: task.completed
+            ? const RoundedRectangleBorder(
+                side: BorderSide(color: Colors.purpleAccent, width: 2),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              )
+            : const RoundedRectangleBorder(),
+        onTap: handleDetailTask,
+        title: Text(
+          title,
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.w600,
+            decoration: task.completed
+                ? TextDecoration.lineThrough
+                : TextDecoration.none,
           ),
-          textAlign: TextAlign.justify,
+        ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        subtitle: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: Text(
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            description,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w400,
+            ),
+            textAlign: TextAlign.justify,
+          ),
         ),
       ),
     );

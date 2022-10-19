@@ -96,13 +96,16 @@ class WidgetNotes extends HookWidget {
         ),
       ),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      subtitle: Text(
-        description,
-        style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w400,
+      subtitle: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Text(
+          description,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+          ),
+          textAlign: TextAlign.justify,
         ),
-        textAlign: TextAlign.justify,
       ),
     );
   }

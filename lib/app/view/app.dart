@@ -9,6 +9,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 ValueNotifier<GraphQLClient> getClient() {
   final httpLink = HttpLink('http://127.0.0.1:8000/graphql');
   final authLink = AuthLink(
+    /// Get the token from storage
     getToken: () => 'Bearer 1|oYRJ7znTt9eDI42G2SIbySD6Gq3bRTuPLCXTmEFa',
   );
   final link = authLink.concat(httpLink);

@@ -57,6 +57,7 @@ class TasksCardScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             final todo = data.todos[index];
             return WidgetNotes(
+              task: todo,
               title: todo.title,
               description: todo.description,
             );
@@ -71,8 +72,11 @@ class WidgetNotes extends HookWidget {
   const WidgetNotes({
     super.key,
     required this.title,
+    required this.task,
     required this.description,
   });
+
+  final Query$TodosQuery$todos task;
 
   final String title;
   final String description;
@@ -81,7 +85,7 @@ class WidgetNotes extends HookWidget {
   Widget build(BuildContext context) {
     final handleDetailTask = useCallback(
       () {
-        Navigator.pushNamed(context, '/task-detail');
+        Navigator.pushNamed(context, '/task-detail', arguments: task);
       },
       [],
     );

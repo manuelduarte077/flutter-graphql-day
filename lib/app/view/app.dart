@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todo/features/home/home_screen.dart';
 
 import 'package:flutter_todo/features/task/task_detail/task_detail_screen.dart';
+import 'package:flutter_todo/features/task/task_list/~graphql/__generated__/todo.fragments.graphql.dart';
 import 'package:flutter_todo/features/task/task_new/add_new_task_screen.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -47,7 +48,12 @@ class MyApp extends StatelessWidget {
               );
             case '/task-detail':
               return MaterialPageRoute(
-                builder: (_) => const TaskDetailScreen(),
+                builder: (_) {
+                  final task = settings.arguments as Fragment$todoCardBody_Todo;
+                  return TaskDetailScreen(
+                    task: task,
+                  );
+                },
               );
             case '/':
             default:

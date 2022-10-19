@@ -1,44 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/features/task/task_list/~graphql/__generated__/todo.fragments.graphql.dart';
 
-class TaskDetailScreen extends StatelessWidget {
-  const TaskDetailScreen({super.key});
+class TaskDetailScreen extends StatefulWidget {
+  const TaskDetailScreen({super.key, required this.task});
+
+  final Fragment$todoCardBody_Todo task;
+
+  @override
+  State<TaskDetailScreen> createState() => _TaskDetailScreenState();
+}
+
+class _TaskDetailScreenState extends State<TaskDetailScreen> {
+  /// Variable que contiene el estado de la tarea
+  ///
+
+  /// Variable que contiene el estado de la tarea
 
   @override
   Widget build(BuildContext context) {
+    /// Variable que contiene el estado de la tarea
+    var isCompleted = widget.task.completed
+        ? const Icon(
+            Icons.check_circle,
+            color: Colors.green,
+            size: 30,
+          )
+        : const Icon(
+            Icons.check_circle_outline,
+            color: Colors.grey,
+            size: 30,
+          );
+
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 70,
         actions: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: IconButton(
-              icon: const Icon(Icons.check_box_outline_blank, size: 30),
-              onPressed: () {},
-            ),
+            child: changeStatusTask(isCompleted),
           ),
         ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 16),
         child: Column(
-          children: const [
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
             Text(
-              '✍️ Youtube script ideas',
-              style: TextStyle(
+              widget.task.title,
+              style: const TextStyle(
                 fontSize: 34,
                 fontWeight: FontWeight.w700,
               ),
             ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             Text(
-              ''' 
-Google Play Protect, regular security updates and control over how your data is shared. We’re dedicated to securing Android’s 2.5 billion+ active devices every day and keeping information private. 
-              
-Screen readers, speech-to-text and some of the newest ways to experience the world your way. 
-              
-Choices for work, gaming, 5G streaming and anything else. There are over 24,000 phones and tablets that run on Android globally. So no matter what you’re looking for, there’s something for you.
-''',
-              style: TextStyle(
+              widget.task.description,
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w300,
                 height: 1.8,
@@ -48,6 +66,13 @@ Choices for work, gaming, 5G streaming and anything else. There are over 24,000 
           ],
         ),
       ),
+    );
+  }
+
+  IconButton changeStatusTask(Icon isCompleted) {
+    return IconButton(
+      icon: isCompleted,
+      onPressed: () {},
     );
   }
 }

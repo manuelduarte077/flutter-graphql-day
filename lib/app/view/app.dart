@@ -4,6 +4,7 @@ import 'package:flutter_todo/features/home/home_screen.dart';
 import 'package:flutter_todo/features/task/task_detail/task_detail_screen.dart';
 import 'package:flutter_todo/features/task/task_list/~graphql/__generated__/todo.fragments.graphql.dart';
 import 'package:flutter_todo/features/task/task_new/add_new_task_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 /// Graphql conect
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData.from(
           useMaterial3: true,
-          colorScheme: const ColorScheme.light(),
+          colorScheme: const ColorScheme.dark(),
         ),
         home: const HomeScreen(),
         onGenerateRoute: (settings) {

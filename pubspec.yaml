@@ -13,8 +13,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
-  flutter_hooks: ^0.18.5+1
-
+  google_fonts: ^3.0.1
   graphql: ^5.1.2-beta.4
   graphql_flutter: ^5.1.1-beta.4
 

@@ -23,123 +23,126 @@ class AddNewTaskScreen extends StatelessWidget {
         ),
       ),
       body: Mutation$TodoCreate$Widget(
-        builder: (runMutation, result) {
+        builder: (runMutation, result, {refetch}) {
           if (result == null || result.isLoading) {
             return const CircularProgressIndicator();
           }
 
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Form(
-              key: formKey,
-              child: Column(
-                children: [
-                  const SizedBox(height: 16),
-                  TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter a title';
-                      }
-                      return null;
-                    },
-                    autocorrect: false,
-                    onChanged: (value) => titleController.text = value,
-                    style: const TextStyle(fontSize: 24),
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Form(
+                key: formKey,
+                child: Column(
+                  children: [
+                    const SizedBox(height: 16),
+                    TextFormField(
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter a title';
+                        }
+                        return null;
+                      },
+                      autocorrect: false,
+                      onChanged: (value) => titleController.text = value,
+                      style: const TextStyle(fontSize: 24),
 
-                    /// Si esta vacio, no se puede guardar
+                      /// Si esta vacio, no se puede guardar
 
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Title',
-                      hintStyle: TextStyle(
-                        fontSize: 34,
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xff98A8B7),
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Title',
+                        hintStyle: TextStyle(
+                          fontSize: 34,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xff98A8B7),
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
-                      }
-                      return null;
-                    },
-                    autocorrect: false,
-                    onChanged: (value) => descriptionController.text = value,
-                    style: const TextStyle(fontSize: 18),
-                    keyboardType: TextInputType.multiline,
-                    maxLines: 10,
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Your notes here...',
-                      hintStyle: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xff98A8B7),
+                    const SizedBox(height: 16),
+                    TextFormField(
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                      autocorrect: false,
+                      onChanged: (value) => descriptionController.text = value,
+                      style: const TextStyle(fontSize: 18),
+                      keyboardType: TextInputType.multiline,
+                      maxLines: 10,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Your notes here...',
+                        hintStyle: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xff98A8B7),
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
-                  /// Save button
-                  FloatingActionButton.extended(
-                    onPressed: () async {
-                      if (formKey.currentState!.validate()) {
-                        await runMutation(
-                          Variables$Mutation$TodoCreate(
-                            todo: Input$TodoInput(
-                              title: titleController.text,
-                              description: descriptionController.text,
-                            ),
-                          ),
-                        ).networkResult;
+                    /// Save button
 
-                        if (result.parsedData != null) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: const Text('CreateToDO failed'),
+                    FloatingActionButton.extended(
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          runMutation(
+                            Variables$Mutation$TodoCreate(
+                              todo: Input$TodoInput(
+                                title: titleController.text,
+                                description: descriptionController.text,
+                              ),
                             ),
                           );
+
+                          if (result.parsedData != null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('CreateToDO failed'),
+                              ),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('CreateToDO success'),
+                              ),
+                            );
+
+                            Navigator.of(context).pop();
+                          }
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: const Text('CreateToDO success'),
+                            const SnackBar(
+                              content: Text('Por Favor completar los campos'),
                             ),
                           );
-                          Navigator.of(context).pop();
                         }
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: const Text('Please fill all fields'),
-                          ),
-                        );
-                      }
-                    },
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                    ),
-                    elevation: 0,
-                    backgroundColor: const Color(0xff7885FF),
-                    label: const Text(
-                      'Save',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
+                      },
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
                       ),
+                      elevation: 0,
+                      backgroundColor: const Color(0xffDF2E59),
+                      label: const Text(
+                        'Guardar',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      icon: const Icon(Icons.check, color: Colors.white),
                     ),
-                    icon: const Icon(Icons.check, color: Colors.white),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );
         },
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }

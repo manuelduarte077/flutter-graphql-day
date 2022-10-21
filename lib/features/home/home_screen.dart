@@ -20,28 +20,33 @@ class HomeScreen extends HookWidget {
         toolbarHeight: 60,
         titleSpacing: 30,
         title: const Text(
-          'All notes',
+          'Notas',
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w600,
           ),
         ),
         centerTitle: false,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.lightbulb_outline, size: 30),
-            onPressed: () {},
+        actions: const [
+          Padding(
+            padding: EdgeInsets.all(8),
+            child: CircleAvatar(
+              foregroundColor: Colors.white,
+              backgroundImage: NetworkImage(
+                'https://avatars.githubusercontent.com/u/9060523?s=200&v=4',
+              ),
+            ),
           ),
         ],
       ),
       body: const TasksCardScreen(),
       floatingActionButton: FloatingActionButton(
-        shape: const CircleBorder(),
-        backgroundColor: const Color(0xff7885FF),
+        backgroundColor: const Color(0xffDF2E59),
         elevation: 0,
         onPressed: handleAddTask,
         child: const Icon(Icons.add, size: 24, color: Colors.white),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

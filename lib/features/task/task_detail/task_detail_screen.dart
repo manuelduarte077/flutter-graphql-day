@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:flutter_todo/features/task/task_detail/~graphql/__generated__/updated_todo.mutation.graphql.dart';
 import 'package:flutter_todo/features/task/task_list/~graphql/__generated__/todo.fragments.graphql.dart';
 
 class TaskDetailScreen extends StatefulWidget {
@@ -11,15 +13,10 @@ class TaskDetailScreen extends StatefulWidget {
 }
 
 class _TaskDetailScreenState extends State<TaskDetailScreen> {
-  /// Variable que contiene el estado de la tarea
-  ///
-
-  /// Variable que contiene el estado de la tarea
-
   @override
   Widget build(BuildContext context) {
     /// Variable que contiene el estado de la tarea
-    var isCompleted = widget.task.completed
+    final isCompleted = widget.task.completed
         ? const Icon(
             Icons.check_circle,
             color: Colors.green,
@@ -69,10 +66,38 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
     );
   }
 
-  IconButton changeStatusTask(Icon isCompleted) {
-    return IconButton(
-      icon: isCompleted,
-      onPressed: () {},
+  Mutation$TodoUpdateCompleted$Widget changeStatusTask(Icon isCompleted) {
+    return Mutation$TodoUpdateCompleted$Widget(
+      builder: (runMutation, result, {refetch}) {
+        if (result == null || result.isLoading) {
+          return const CircularProgressIndicator();
+        }
+
+        return IconButton(
+          onPressed: () {
+            runMutation(
+              Variables$Mutation$TodoUpdateCompleted(
+                todoId: widget.task.id,
+                completed: !widget.task.completed,
+              ),
+            );
+            print('Tarea completada');
+          },
+          icon: isCompleted,
+        );
+      },
     );
   }
 }
+
+
+
+
+//           Mutation$TodoUpdateCompleted$Widget(
+//           builder: (runMutation, result, {refetch}) {
+//             if (result == null || result.isLoading) {
+//               return const CircularProgressIndicator();
+//             }
+//             return isCompleted;
+//           }, required IconButton child,
+//         ),

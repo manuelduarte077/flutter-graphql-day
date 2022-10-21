@@ -1,4 +1,3 @@
-
 mutation TodoCreate ($todo: TodoInput!) {
     todoCreate (input: $todo) {
         id

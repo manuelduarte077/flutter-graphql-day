@@ -13,12 +13,21 @@ class AddNewTaskScreen extends StatelessWidget {
     final formKey = GlobalKey<FormState>();
 
     return Scaffold(
+      backgroundColor: const Color(0xff181920),
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        backgroundColor: const Color(0xff181920),
         title: const Text(
-          'Add notes',
+          'Nueva nota',
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w700,
+            color: Colors.white,
           ),
         ),
       ),
@@ -51,7 +60,7 @@ class AddNewTaskScreen extends StatelessWidget {
 
                       decoration: const InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'Title',
+                        hintText: 'Titulo',
                         hintStyle: TextStyle(
                           fontSize: 34,
                           fontWeight: FontWeight.w700,
@@ -74,7 +83,7 @@ class AddNewTaskScreen extends StatelessWidget {
                       maxLines: 10,
                       decoration: const InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'Your notes here...',
+                        hintText: 'Escribe algo...',
                         hintStyle: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,

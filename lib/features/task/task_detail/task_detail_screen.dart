@@ -24,12 +24,20 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
           )
         : const Icon(
             Icons.check_circle_outline,
-            color: Colors.grey,
+            color: Colors.white,
             size: 30,
           );
 
     return Scaffold(
+      backgroundColor: const Color(0xff181920),
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        backgroundColor: const Color(0xff181920),
         leadingWidth: 70,
         actions: [
           Padding(
@@ -48,6 +56,7 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
               style: const TextStyle(
                 fontSize: 34,
                 fontWeight: FontWeight.w700,
+                color: Colors.white,
               ),
             ),
             const SizedBox(height: 25),
@@ -57,6 +66,7 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
                 fontSize: 16,
                 fontWeight: FontWeight.w300,
                 height: 1.8,
+                color: Colors.white,
               ),
               textAlign: TextAlign.justify,
             ),

@@ -1,4 +1,3 @@
-
 mutation TodoUpdateCompleted ($completed: Boolean!, $todoId: Int!) {
     todoUpdateCompleted(completed:  $completed, todoId: $todoId) {
           id

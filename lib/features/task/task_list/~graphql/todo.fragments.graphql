@@ -1,4 +1,3 @@
-
 # Should be type `Todo` but they made the schema weird
 fragment todoCardBody_Todo on Todo {
     id

@@ -11,16 +11,19 @@ ValueNotifier<GraphQLClient> getClient() {
   final httpLink = HttpLink('http://127.0.0.1:8000/graphql');
   final authLink = AuthLink(
     /// Get the token from storage
-    getToken: () => 'Bearer 1|oYRJ7znTt9eDI42G2SIbySD6Gq3bRTuPLCXTmEFa',
+    getToken: () => 'Bearer 1|J7sGWuEyQbN80iyCje7ITijcDJckrGR43tPmHEIw',
   );
   final link = authLink.concat(httpLink);
 
   return ValueNotifier(
     GraphQLClient(
       cache: GraphQLCache(store: HiveStore()),
-
-      /// Explicar del fetchPolicy
       link: link,
+      defaultPolicies: DefaultPolicies(
+        watchQuery: Policies(
+          fetch: FetchPolicy.cacheAndNetwork,
+        ),
+      ),
     ),
   );
 }
@@ -35,9 +38,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData.from(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.blueAccent,
-          ),
+          colorScheme: const ColorScheme.light(),
         ),
         home: const HomeScreen(),
         onGenerateRoute: (settings) {

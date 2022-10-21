@@ -18,16 +18,13 @@ class TasksCardScreen extends StatelessWidget {
 
         final data = result.parsedData!;
 
-        /// si no hay datos en la lista de tareas se muestra un mensaje de que no hay tareas
+        data.todos.removeWhere((l) => l == null);
 
         if (data.todos.isEmpty) {
           return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
                 'assets/no_data.png',
-                width: 237,
-                height: 186,
               ),
               const SizedBox(height: 20),
               const ListTile(
@@ -52,15 +49,20 @@ class TasksCardScreen extends StatelessWidget {
           );
         }
 
-        return ListView.builder(
-          itemCount: data.todos.length,
-          itemBuilder: (context, index) {
-            final todo = data.todos[index];
-            return WidgetNotes(
-              task: todo,
-              title: todo.title,
-              description: todo.description,
-            );
+        return RefreshIndicator(
+          child: ListView.builder(
+            itemCount: data.todos.length,
+            itemBuilder: (context, index) {
+              final todo = data.todos[index];
+              return NotesWidget(
+                task: todo,
+                title: todo.title,
+                description: todo.description,
+              );
+            },
+          ),
+          onRefresh: () async {
+            await refetch!();
           },
         );
       },
@@ -68,8 +70,8 @@ class TasksCardScreen extends StatelessWidget {
   }
 }
 
-class WidgetNotes extends HookWidget {
-  const WidgetNotes({
+class NotesWidget extends HookWidget {
+  const NotesWidget({
     super.key,
     required this.title,
     required this.task,
@@ -93,13 +95,14 @@ class WidgetNotes extends HookWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: ListTile(
-        shape: task.completed
-            ? const RoundedRectangleBorder(
-                side: BorderSide(color: Colors.purpleAccent, width: 2),
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-              )
-            : const RoundedRectangleBorder(),
-        onTap: handleDetailTask,
+        leading: task.completed
+            ? const Icon(Icons.check_box, size: 30)
+            : const Icon(Icons.check_box_outline_blank, size: 30),
+        shape: const RoundedRectangleBorder(
+          side: BorderSide(color: Colors.grey),
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+        ),
+        // onTap: handleDetailTask,
         title: Text(
           title,
           style: TextStyle(

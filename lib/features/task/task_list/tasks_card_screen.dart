@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import 'package:flutter_todo/features/task/task_detail/~graphql/__generated__/updated_todo.mutation.graphql.dart';
 import 'package:flutter_todo/features/task/task_list/~graphql/__generated__/todo_tab.query.graphql.dart';
 import 'package:flutter_todo/utils/utils.dart';
 
@@ -18,7 +16,6 @@ class _TasksCardScreenState extends State<TasksCardScreen> {
     /// Listar estos
     return Query$TodosQuery$Widget(
       builder: (result, {fetchMore, refetch}) {
-        /// investigar
         final noDataWidget = validateResult(result);
 
         if (noDataWidget != null) return noDataWidget;
@@ -133,7 +130,11 @@ class NotesWidget extends StatelessWidget {
               Navigator.pushNamed(context, '/task-detail', arguments: task);
             },
             leading: task.completed
-                ? const Icon(Icons.brush, size: 30, color: Color(0xffac6dde))
+                ? const Icon(
+                    Icons.check_box,
+                    size: 30,
+                    color: Color(0xffac6dde),
+                  )
                 : const Icon(
                     Icons.check_box_outline_blank,
                     size: 30,
@@ -143,43 +144,5 @@ class NotesWidget extends StatelessWidget {
         ),
       ],
     );
-
-    // return Padding(
-    //   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-    //   child: ListTile(
-    //     leading: task.completed
-    //         ? const Icon(Icons.check_box, size: 30)
-    //         : const Icon(Icons.check_box_outline_blank, size: 30),
-    //     shape: const RoundedRectangleBorder(
-    //       side: BorderSide(color: Colors.grey),
-    //       borderRadius: BorderRadius.all(Radius.circular(10)),
-    //     ),
-    //     // onTap: handleDetailTask,
-    //     title: Text(
-    //       title,
-    //       style: TextStyle(
-    //         fontSize: 22,
-    //         fontWeight: FontWeight.w600,
-    // decoration: task.completed
-    //     ? TextDecoration.lineThrough
-    //     : TextDecoration.none,
-    //       ),
-    //     ),
-    //     contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-    //     subtitle: Padding(
-    //       padding: const EdgeInsets.symmetric(vertical: 8),
-    //       child: Text(
-    //         maxLines: 2,
-    //         overflow: TextOverflow.ellipsis,
-    //         description,
-    //         style: const TextStyle(
-    //           fontSize: 18,
-    //           fontWeight: FontWeight.w400,
-    //         ),
-    //         textAlign: TextAlign.justify,
-    //       ),
-    //     ),
-    //   ),
-    // );
   }
 }

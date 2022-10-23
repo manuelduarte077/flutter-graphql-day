@@ -17,7 +17,7 @@ class Fragment$todoCardBody_Todo {
     final l$completed = json['completed'];
     final l$$__typename = json['__typename'];
     return Fragment$todoCardBody_Todo(
-      id: (l$id as int),
+      id: (l$id as String),
       title: (l$title as String),
       description: (l$description as String),
       completed: (l$completed as bool),
@@ -25,7 +25,7 @@ class Fragment$todoCardBody_Todo {
     );
   }
 
-  final int id;
+  final String id;
 
   final String title;
 
@@ -123,7 +123,7 @@ abstract class CopyWith$Fragment$todoCardBody_Todo<TRes> {
       _CopyWithStubImpl$Fragment$todoCardBody_Todo;
 
   TRes call({
-    int? id,
+    String? id,
     String? title,
     String? description,
     bool? completed,
@@ -152,7 +152,7 @@ class _CopyWithImpl$Fragment$todoCardBody_Todo<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$todoCardBody_Todo(
-        id: id == _undefined || id == null ? _instance.id : (id as int),
+        id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
@@ -175,7 +175,7 @@ class _CopyWithStubImpl$Fragment$todoCardBody_Todo<TRes>
   TRes _res;
 
   call({
-    int? id,
+    String? id,
     String? title,
     String? description,
     bool? completed,
@@ -281,13 +281,13 @@ class Fragment$todoUser_User {
     final l$name = json['name'];
     final l$$__typename = json['__typename'];
     return Fragment$todoUser_User(
-      id: (l$id as int),
+      id: (l$id as String),
       name: (l$name as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int id;
+  final String id;
 
   final String name;
 
@@ -362,7 +362,7 @@ abstract class CopyWith$Fragment$todoUser_User<TRes> {
       _CopyWithStubImpl$Fragment$todoUser_User;
 
   TRes call({
-    int? id,
+    String? id,
     String? name,
     String? $__typename,
   });
@@ -387,7 +387,7 @@ class _CopyWithImpl$Fragment$todoUser_User<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$todoUser_User(
-        id: id == _undefined || id == null ? _instance.id : (id as int),
+        id: id == _undefined || id == null ? _instance.id : (id as String),
         name: name == _undefined || name == null
             ? _instance.name
             : (name as String),
@@ -404,7 +404,7 @@ class _CopyWithStubImpl$Fragment$todoUser_User<TRes>
   TRes _res;
 
   call({
-    int? id,
+    String? id,
     String? name,
     String? $__typename,
   }) =>

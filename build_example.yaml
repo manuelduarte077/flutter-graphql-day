@@ -7,7 +7,7 @@ targets:
           #these convert the scalars to Dart types automatically
           scalars:
             Date:
-              type: DateTime ## Aclarar qmejor
+              type: DateTime
             timestamptz:
               type: DateTime
             uuid:

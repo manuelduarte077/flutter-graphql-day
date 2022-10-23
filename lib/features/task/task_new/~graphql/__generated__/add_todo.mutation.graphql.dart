@@ -514,7 +514,7 @@ class Mutation$TodoCreate$todoCreate implements Fragment$todoCardBody_Todo {
     final l$completed = json['completed'];
     final l$$__typename = json['__typename'];
     return Mutation$TodoCreate$todoCreate(
-      id: (l$id as int),
+      id: (l$id as String),
       title: (l$title as String),
       description: (l$description as String),
       completed: (l$completed as bool),
@@ -522,7 +522,7 @@ class Mutation$TodoCreate$todoCreate implements Fragment$todoCardBody_Todo {
     );
   }
 
-  final int id;
+  final String id;
 
   final String title;
 
@@ -620,7 +620,7 @@ abstract class CopyWith$Mutation$TodoCreate$todoCreate<TRes> {
       _CopyWithStubImpl$Mutation$TodoCreate$todoCreate;
 
   TRes call({
-    int? id,
+    String? id,
     String? title,
     String? description,
     bool? completed,
@@ -649,7 +649,7 @@ class _CopyWithImpl$Mutation$TodoCreate$todoCreate<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$TodoCreate$todoCreate(
-        id: id == _undefined || id == null ? _instance.id : (id as int),
+        id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
@@ -672,7 +672,7 @@ class _CopyWithStubImpl$Mutation$TodoCreate$todoCreate<TRes>
   TRes _res;
 
   call({
-    int? id,
+    String? id,
     String? title,
     String? description,
     bool? completed,

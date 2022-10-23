@@ -343,7 +343,7 @@ class Query$TodosQuery$todos implements Fragment$todoCardBody_Todo {
     final l$$__typename = json['__typename'];
     final l$user = json['user'];
     return Query$TodosQuery$todos(
-      id: (l$id as int),
+      id: (l$id as String),
       title: (l$title as String),
       description: (l$description as String),
       completed: (l$completed as bool),
@@ -352,7 +352,7 @@ class Query$TodosQuery$todos implements Fragment$todoCardBody_Todo {
     );
   }
 
-  final int id;
+  final String id;
 
   final String title;
 
@@ -460,7 +460,7 @@ abstract class CopyWith$Query$TodosQuery$todos<TRes> {
       _CopyWithStubImpl$Query$TodosQuery$todos;
 
   TRes call({
-    int? id,
+    String? id,
     String? title,
     String? description,
     bool? completed,
@@ -492,7 +492,7 @@ class _CopyWithImpl$Query$TodosQuery$todos<TRes>
     Object? user = _undefined,
   }) =>
       _then(Query$TodosQuery$todos(
-        id: id == _undefined || id == null ? _instance.id : (id as int),
+        id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
@@ -522,7 +522,7 @@ class _CopyWithStubImpl$Query$TodosQuery$todos<TRes>
   TRes _res;
 
   call({
-    int? id,
+    String? id,
     String? title,
     String? description,
     bool? completed,

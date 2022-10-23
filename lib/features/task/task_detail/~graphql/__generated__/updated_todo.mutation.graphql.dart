@@ -8,7 +8,7 @@ import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 class Variables$Mutation$TodoUpdateCompleted {
   factory Variables$Mutation$TodoUpdateCompleted({
     required bool completed,
-    required int todoId,
+    required String todoId,
   }) =>
       Variables$Mutation$TodoUpdateCompleted._({
         r'completed': completed,
@@ -23,14 +23,14 @@ class Variables$Mutation$TodoUpdateCompleted {
     final l$completed = data['completed'];
     result$data['completed'] = (l$completed as bool);
     final l$todoId = data['todoId'];
-    result$data['todoId'] = (l$todoId as int);
+    result$data['todoId'] = (l$todoId as String);
     return Variables$Mutation$TodoUpdateCompleted._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
   bool get completed => (_$data['completed'] as bool);
-  int get todoId => (_$data['todoId'] as int);
+  String get todoId => (_$data['todoId'] as String);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$completed = completed;
@@ -90,7 +90,7 @@ abstract class CopyWith$Variables$Mutation$TodoUpdateCompleted<TRes> {
 
   TRes call({
     bool? completed,
-    int? todoId,
+    String? todoId,
   });
 }
 
@@ -115,7 +115,8 @@ class _CopyWithImpl$Variables$Mutation$TodoUpdateCompleted<TRes>
         ..._instance._$data,
         if (completed != _undefined && completed != null)
           'completed': (completed as bool),
-        if (todoId != _undefined && todoId != null) 'todoId': (todoId as int),
+        if (todoId != _undefined && todoId != null)
+          'todoId': (todoId as String),
       }));
 }
 
@@ -127,7 +128,7 @@ class _CopyWithStubImpl$Variables$Mutation$TodoUpdateCompleted<TRes>
 
   call({
     bool? completed,
-    int? todoId,
+    String? todoId,
   }) =>
       _res;
 }
@@ -292,7 +293,7 @@ const documentNodeMutationTodoUpdateCompleted = DocumentNode(definitions: [
       VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'todoId')),
         type: NamedTypeNode(
-          name: NameNode(value: 'Int'),
+          name: NameNode(value: 'ID'),
           isNonNull: true,
         ),
         defaultValue: DefaultValueNode(value: null),
@@ -575,7 +576,7 @@ class Mutation$TodoUpdateCompleted$todoUpdateCompleted
     final l$completed = json['completed'];
     final l$$__typename = json['__typename'];
     return Mutation$TodoUpdateCompleted$todoUpdateCompleted(
-      id: (l$id as int),
+      id: (l$id as String),
       title: (l$title as String),
       description: (l$description as String),
       completed: (l$completed as bool),
@@ -583,7 +584,7 @@ class Mutation$TodoUpdateCompleted$todoUpdateCompleted
     );
   }
 
-  final int id;
+  final String id;
 
   final String title;
 
@@ -683,7 +684,7 @@ abstract class CopyWith$Mutation$TodoUpdateCompleted$todoUpdateCompleted<TRes> {
       _CopyWithStubImpl$Mutation$TodoUpdateCompleted$todoUpdateCompleted;
 
   TRes call({
-    int? id,
+    String? id,
     String? title,
     String? description,
     bool? completed,
@@ -712,7 +713,7 @@ class _CopyWithImpl$Mutation$TodoUpdateCompleted$todoUpdateCompleted<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$TodoUpdateCompleted$todoUpdateCompleted(
-        id: id == _undefined || id == null ? _instance.id : (id as int),
+        id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
@@ -735,7 +736,7 @@ class _CopyWithStubImpl$Mutation$TodoUpdateCompleted$todoUpdateCompleted<TRes>
   TRes _res;
 
   call({
-    int? id,
+    String? id,
     String? title,
     String? description,
     bool? completed,

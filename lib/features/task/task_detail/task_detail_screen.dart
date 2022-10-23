@@ -99,15 +99,3 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
     );
   }
 }
-
-
-
-
-//           Mutation$TodoUpdateCompleted$Widget(
-//           builder: (runMutation, result, {refetch}) {
-//             if (result == null || result.isLoading) {
-//               return const CircularProgressIndicator();
-//             }
-//             return isCompleted;
-//           }, required IconButton child,
-//         ),

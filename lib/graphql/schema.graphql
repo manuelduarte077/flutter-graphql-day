@@ -7,7 +7,7 @@ schema {
 
 type Mutation {
     todoCreate(input: TodoInput!): Todo
-    todoUpdateCompleted(completed: Boolean!, todoId: Int!): Todo
+    todoUpdateCompleted(completed: Boolean!, todoId: ID!): Todo
 }
 
 "Information about pagination using a Relay style cursor connection."
@@ -73,13 +73,13 @@ type SimplePaginatorInfo {
 type Todo {
     completed: Boolean!
     description: String!
-    id: Int!
+    id: ID!
     title: String!
     user: User!
 }
 
 type User {
-    id: Int!
+    id: ID!
     name: String!
     todos: [Todo!]!
 }
